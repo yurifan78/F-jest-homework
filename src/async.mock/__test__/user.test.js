@@ -1,3 +1,4 @@
+import axios from "axios";
 import { register } from "../user";
 
 jest.mock("../verify");
@@ -11,6 +12,7 @@ describe("register", () => {
 
   test("should reject with Error when username is invalid", async () => {
     // TODO 20: add test here
+    axios.post.mockRejectedValue(new Error("wrong username or password"));
     await expect(register()).rejects.toThrow("wrong username or password");
   });
 });
